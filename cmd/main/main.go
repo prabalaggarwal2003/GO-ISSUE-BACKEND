@@ -9,7 +9,7 @@ import (
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 
-	"os"
+	
 )
 
 func main() {
@@ -18,11 +18,5 @@ func main() {
 	routes.RegisterIssueRoutes(r)
 	http.Handle("/", r)
 
-	port := os.Getenv("PORT")
-
-	if port == "" {
-		port = "3000"
-	}
-
-	log.Fatal(http.ListenAndServe("0.0.0.0:", r))
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
