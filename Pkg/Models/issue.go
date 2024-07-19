@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/aryan/go-issue-backend/Pkg/Config"
+	"github.com/aryan/go-issue-backend/Pkg/config"
 	"github.com/jinzhu/gorm"
 )
 
