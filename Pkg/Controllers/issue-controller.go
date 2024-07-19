@@ -6,8 +6,8 @@ import(
 	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
-	"github.com/aryan/go-issue-backend/pkg/utils"
-	"github.com/aryan/go-issue-backend/pkg/models"
+	"github.com/aryan/go-issue-backend/Pkg/Utils"
+	"github.com/aryan/go-issue-backend/Pkg/Models"
 )
 
 var NewIssue models.Issue

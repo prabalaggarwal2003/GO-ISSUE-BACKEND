@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/aryan/go-issue-backend/pkg/controllers"
+	"github.com/aryan/go-issue-backend/Pkg/Controllers"
 )
 
 var RegisterIssueRoutes = func(router *mux.Router){
