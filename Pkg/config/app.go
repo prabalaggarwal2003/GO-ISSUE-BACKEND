@@ -3,6 +3,7 @@ package config
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	"os"
 )
 
 var (
@@ -10,8 +11,13 @@ var (
 )
 
 func Connect() {
+	dbName := os.Getenv("MYSQL_ADDON_DB")
+	dbUser := os.Getenv("MYSQL_ADDON_USER")
+	dbPass := os.Getenv("MYSQL_ADDON_PASSWORD")
+	dbHost := os.Getenv("MYSQL_ADDON_HOST")
+	dbPort := os.Getenv("MYSQL_ADDON_PORT")
 
-	d, err := gorm.Open("mysql://", "unv1fcsdpjrssiks:G5TzMLd5Y7TmJHnp4k3e@biqvusjvq0ih4w4ikcw3-mysql.services.clever-cloud.com:3306/biqvusjvq0ih4w4ikcw3")
+	d, err := gorm.Open("mysql://"+ dbUser + ":" + dbPass + "@" + dbHost + ":" + dbPort + "/" + dbName + "?charset=utf8mb4&parseTime=True&loc=Local")
 	if err != nil {
 		panic(err)
 	}
