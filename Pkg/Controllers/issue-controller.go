@@ -42,11 +42,8 @@ func GetIssueByEnro(w http.ResponseWriter, r *http.Request){
 	enableCors(&w)
 	vars := mux.Vars(r)
 	enro := vars["enro"]
-	enrollmentno, err:= strconv.ParseInt(enro,0,0)
-	if err != nil {
-		fmt.Println("error while parsing")
-	}
-	issueDetails, _:= models.GetIssueByEnro(enrollmentno)
+	
+	issueDetails, _:= models.GetIssueByEnro(enro)
 	res, _ := json.Marshal(issueDetails)
 	w.Header().Set("Content-Type","application/json")
 	w.WriteHeader(http.StatusOK)

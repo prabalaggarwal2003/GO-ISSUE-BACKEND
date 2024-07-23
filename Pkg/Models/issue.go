@@ -47,7 +47,7 @@ func GetIssueById(Id int64) (*Issue, *gorm.DB) {
 	return &getIssue, db
 }
 
-func GetIssueByEnro(Enro int64) (*Issue, *gorm.DB) {
+func GetIssueByEnro(Enro string) (*Issue, *gorm.DB) {
 	var getenro Issue
 	db := db.Where("enrollmentno=?", Enro).Find(&getenro)
 	return &getenro, db
