@@ -9,10 +9,10 @@ var db *gorm.DB
 
 type Issue struct {
 	gorm.Model
-
+	Complaintid      string `json:"complaintid"`
 	Designation      string `json:"designation"`
 	Name             string `json:"name"`
-	Enrollmentno     string  `json:"enrollmentno"`
+	Enrollmentno     string `json:"enrollmentno"`
 	Location         string `json:"location"`
 	Area             string `json:"area"`
 	Floorno          string `json:"floorno"`
@@ -45,4 +45,10 @@ func GetIssueById(Id int64) (*Issue, *gorm.DB) {
 	var getIssue Issue
 	db := db.Where("ID=?", Id).Find(&getIssue)
 	return &getIssue, db
+}
+
+func GetIssueByEnro(Enro int64) (*Issue, *gorm.DB) {
+	var getenro Issue
+	db := db.Where("enrollmentno=?", Enro).Find(&getenro)
+	return &getenro, db
 }
