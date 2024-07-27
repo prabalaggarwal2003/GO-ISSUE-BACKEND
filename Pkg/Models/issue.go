@@ -41,14 +41,14 @@ func GetAllIssue() []Issue {
 	return Issues
 }
 
-func GetIssueById(Id int64) (*Issue, *gorm.DB) {
+func GetIssueById(Id string) (*Issue, *gorm.DB) {
 	var getIssue Issue
-	db := db.Where("ID=?", Id).Find(&getIssue)
+	db := db.Where("complaintid=?", Id).Find(&getIssue)
 	return &getIssue, db
 }
 
-func GetIssueByEnro(Enro string) (*Issue, *gorm.DB) {
-	var getenro Issue
+func GetIssueByEnro(Enro string) ([]Issue,*gorm.DB) {
+	var getenro []Issue
 	db := db.Where("enrollmentno=?", Enro).Find(&getenro)
-	return &getenro, db
+	return getenro, db
 }

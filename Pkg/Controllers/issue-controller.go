@@ -2,10 +2,10 @@ package controllers
 
 import(
 	"encoding/json"
-	"fmt"
+	
 	"github.com/gorilla/mux"
 	"net/http"
-	"strconv"
+
 	"github.com/aryan/go-issue-backend/Pkg/Utils"
 	"github.com/aryan/go-issue-backend/Pkg/Models"
 )
@@ -14,6 +14,7 @@ var NewIssue models.Issue
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 }
+
 func GetIssue(w http.ResponseWriter, r *http.Request){
 	enableCors(&w)
 	newIssue:=models.GetAllIssue()
@@ -26,12 +27,9 @@ func GetIssue(w http.ResponseWriter, r *http.Request){
 func GetIssueById(w http.ResponseWriter, r *http.Request){
 	enableCors(&w)
 	vars := mux.Vars(r)
-	issueId := vars["issueId"]
-	ID, err:= strconv.ParseInt(issueId,0,0)
-	if err != nil {
-		fmt.Println("error while parsing")
-	}
-	issueDetails, _:= models.GetIssueById(ID)
+	complaintId := vars["complaintId"]
+	
+	issueDetails, _:= models.GetIssueById(complaintId)
 	res, _ := json.Marshal(issueDetails)
 	w.Header().Set("Content-Type","application/json")
 	w.WriteHeader(http.StatusOK)
@@ -67,11 +65,8 @@ func UpdateIssue(w http.ResponseWriter, r *http.Request){
 	utils.ParseBody(r, updateIssue)
 	vars := mux.Vars(r)
 	issueId := vars["issueId"]
-	ID, err:= strconv.ParseInt(issueId,0,0)
-	if err != nil {
-		fmt.Println("error while parsing")
-	}
-	issueDetails, db:=models.GetIssueById(ID)
+	
+	issueDetails, db:=models.GetIssueById(issueId)
 	if updateIssue.Status == "Pending"{
 		issueDetails.Status = "Complete"
 	}
